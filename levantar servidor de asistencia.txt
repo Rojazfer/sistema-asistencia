@@ -1,0 +1,12 @@
+pasos para levantar los servidores de asistencia  backend
+paso 1 
+cd C:\Users\FERCHO\Documents\asistencia\backend
+paso 2
+.\.venv\Scripts\Activate.ps1
+paso 3
+python manage.py runserver
+frontend  en una nueva terminal
+paso 1
+cd C:\Users\FERCHO\Documents\asistencia\backend\frontend
+paso 2
+npm run dev

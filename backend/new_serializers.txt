@@ -1,0 +1,61 @@
+#!/usr/bin/env python
+"""
+Script para agregar nuevos serializers al archivo serializers.py
+"""
+
+new_code = '''
+
+class DailyEventAttendanceSerializer(serializers.Serializer):
+	"""Serializer para asistencia de un evento específico"""
+	student_id = serializers.IntegerField()
+	student_name = serializers.CharField()
+	student_code = serializers.CharField()
+	ci = serializers.CharField()
+	status = serializers.CharField()
+	scanned_at = serializers.DateTimeField(allow_null=True)
+
+
+class DailyEventReportSerializer(serializers.Serializer):
+	"""Serializer para reporte de un evento del día"""
+	event_id = serializers.IntegerField()
+	title = serializers.CharField()
+	course_name = serializers.CharField()
+	course_parallel = serializers.CharField()
+	date = serializers.DateField()
+	start_time = serializers.TimeField()
+	present_until = serializers.TimeField()
+	late_until = serializers.TimeField()
+	is_active = serializers.BooleanField()
+	
+	# Estadísticas
+	total_enrolled = serializers.IntegerField()
+	present_count = serializers.IntegerField()
+	late_count = serializers.IntegerField()
+	absent_count = serializers.IntegerField()
+	scanned_count = serializers.IntegerField()
+	
+	# Detalles
+	attendance_records = DailyEventAttendanceSerializer(many=True)
+
+
+class DailyEventsReportSerializer(serializers.Serializer):
+	"""Serializer para reporte completo de todos los eventos del día"""
+	date = serializers.DateField()
+	total_events = serializers.IntegerField()
+	professor_name = serializers.CharField()
+	
+	# Estadísticas agregadas del día
+	total_enrolled_all_events = serializers.IntegerField()
+	total_present_all_events = serializers.IntegerField()
+	total_late_all_events = serializers.IntegerField()
+	total_absent_all_events = serializers.IntegerField()
+	total_scanned_all_events = serializers.IntegerField()
+	
+	# % Asistencia promedio
+	attendance_percentage = serializers.FloatField()
+	
+	# Eventos del día
+	events = DailyEventReportSerializer(many=True)
+'''
+
+print(new_code)
